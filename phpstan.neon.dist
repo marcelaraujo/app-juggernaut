@@ -1,0 +1,8 @@
+parameters:
+  checkMissingIterableValueType: false
+  level: max
+  paths:
+    - app
+    - config
+    - src
+    - tests

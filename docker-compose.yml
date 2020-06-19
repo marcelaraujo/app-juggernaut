@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+    slim:
+        image: php:7.4-alpine
+        working_dir: /var/www
+        command: php -S 0.0.0.0:8080 -t public
+        restart: unless-stopped
+        environment:
+            docker: "true"
+        volumes:
+            - .:/var/www
+            - logs:/var/www/logs
+        ports:
+            - 8080:8080
+        networks:
+            - net-internal
+    mysql:
+        image: mysql:8.0
+        command: --default-authentication-plugin=mysql_native_password
+        restart: unless-stopped
+        volumes:
+            - ./config/docker/mysql/data.sql:/docker-entrypoint-initdb.d/data.sql
+        tmpfs:
+            - /var/lib/mysql/:rw,noexec,nosuid,size=600m
+            - /tmp/:rw,noexec,nosuid,size=50m
+        environment:
+            - MYSQL_DATABASE=todo
+            - MYSQL_USER=user
+            - MYSQL_PASSWORD=s3cr3t
+            - MYSQL_ROOT_PASSWORD=r00t
+        ports:
+            - 3306:3306
+        networks:
+            - net-internal
+
+volumes:
+    logs:
+        driver: local
+
+networks:
+    net-internal:
