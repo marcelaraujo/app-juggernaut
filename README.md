@@ -7,5 +7,6 @@ A boilerplate for DDD applications using Slim as framework and running with php7
 
 ## Run it:
 1. `cd [your-app]`
-2. `php -S 0.0.0.0:8080 -t public/`
-3. Browse to http://localhost:8080
+2. `cp .env.sample .env`
+3. `php -S 0.0.0.0:8080 -t public/`
+4. Browse to http://localhost:8080

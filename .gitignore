@@ -2,6 +2,8 @@
 .vscode/
 /coverage/
 /vendor/
-/logs/*
-!/logs/README.md
+/var/cache/*
+/var/logs/*
+!/var/logs/README.md
 .phpunit.result.cache
+.env
